@@ -33,8 +33,7 @@ function modalOpen(event) {
     return;
   }
   modal.classList.add("is-open");
-  modalImg.src = event.target.dataset.source;
-  modalImg.alt = event.target.alt;
+  setModalImg(event.target.dataset.source, event.target.alt);
   overlay.addEventListener("click", modalCloseByOverlayClick);
   document.addEventListener("keydown", modalCloseByEsc);
   modalBtnClose.addEventListener("click", modalClose);
@@ -45,6 +44,7 @@ function modalClose(event) {
   overlay.removeEventListener("click", modalCloseByOverlayClick);
   document.removeEventListener("keydown", modalCloseByEsc);
   modalBtnClose.removeEventListener("click", modalClose);
+  setModalImg();
 }
 
 function modalCloseByEsc(event) {
@@ -57,4 +57,9 @@ function modalCloseByOverlayClick(event) {
   if (event.currentTarget === event.target) {
     modalClose(event);
   }
+}
+
+function setModalImg(src = "", alt = "") {
+  modalImg.src = src;
+  modalImg.alt = alt;
 }
